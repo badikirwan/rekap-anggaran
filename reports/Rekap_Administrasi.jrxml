@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="adfe303b-c1ae-4d66-9904-0d91487d8954">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pekerjaan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\BadikIrwan\\Documents\\NetBeansProjects\\REKAPANGGARAN\\src\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tbl_kegiatan.nama_kegiatan, tbl_kegiatan.pekerjaan, tbl_administrasi.minggu_ke,tbl_administrasi.jumlah FROM tbl_kegiatan INNER JOIN tbl_administrasi ON tbl_kegiatan.pekerjaan = tbl_administrasi.pekerjaan WHERE tbl_administrasi.pekerjaan = $P{pekerjaan}]]>
+	</queryString>
+	<field name="nama_kegiatan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pekerjaan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="minggu_ke" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jumlah" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jumlah}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="f2aebfc1-2aa5-454c-aa34-91bb4bb53970"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REKAP ADMINISTRASI KEGIATAN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="20" width="555" height="20" uuid="b23a3fea-462b-489c-839a-d6dd732a06c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pekerjaan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#FFFF33" uuid="4e1f525f-b04f-42ec-8e50-f0b6f24cdd03"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="20" width="265" height="20" backcolor="#FFFF33" uuid="8d72706b-1d6e-496e-8dd6-a01428680e49"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="265" y="20" width="290" height="20" backcolor="#FFFF33" uuid="81bd3db3-4455-4112-884f-c92bb72a2711"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="20" width="265" height="20" uuid="e1265eff-324f-4ab6-bc0e-7b58f6ae0910"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MINGGU KE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="20" width="290" height="20" uuid="9655432d-6c26-4878-a17f-712c78124e2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="265" height="20" uuid="37e200cf-9219-4a6d-8bcd-9b6565379d5e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="265" y="0" width="290" height="20" uuid="29693ae5-e029-403b-ba5a-be3b2ddc942a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="291" y="1" width="18" height="20" uuid="ec5affd1-dc1d-415a-b917-c39898bd7d6a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="310" y="1" width="100" height="20" uuid="80f0717d-d23d-413b-acf0-83bf497080c5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="1" width="60" height="20" uuid="ddb65a87-68ce-4fc8-999e-8e10eec0579b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Minggu Ke -]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="1" width="100" height="20" uuid="322d666f-13d4-456c-a7b7-4db6c2172f43"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{minggu_ke}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="265" height="20" backcolor="#FFFF33" uuid="b4d17360-4d23-4c91-b290-0635a13ac979"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="265" y="0" width="290" height="20" backcolor="#FFFF33" uuid="928c8ee5-e997-49f2-a3b4-585c08919dfa"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="265" height="20" uuid="c64d3069-0fe5-4ef5-ab88-bfa6a54d9aed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="0" width="18" height="20" uuid="fdd8392c-190e-4f09-9e07-51d54b6a6cb7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="21" width="200" height="20" uuid="4ba79259-bf68-4a4d-a660-2377e99350da"/>
+				<subreportParameter name="pekerjaan">
+					<subreportParameterExpression><![CDATA[$F{pekerjaan}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Rekap_Admin_Bulan.jasper"]]></subreportExpression>
+			</subreport>
+			<textField pattern="#,##0.00">
+				<reportElement x="309" y="1" width="100" height="20" uuid="28bd5153-3565-4add-a1f2-63a9af840ada"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
